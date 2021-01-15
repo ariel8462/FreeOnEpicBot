@@ -7,11 +7,6 @@ import logging
 import threading
 
 
-with open("Token.txt") as f:
-    token = f.read().strip()
-with open("UserID.txt") as f:
-   user_id = f.read().strip()
-
 token = "1447754233:AAHxpRbmZH2IbrVFAo8sShCGnQX3vpsw9fo"
 user_id = 1170714920
 
