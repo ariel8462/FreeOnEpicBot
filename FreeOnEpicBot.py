@@ -1,6 +1,4 @@
 import feedparser
-import requests
-import re
 import telegram
 from telegram.ext import Updater, CommandHandler
 import logging
