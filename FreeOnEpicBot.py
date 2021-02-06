@@ -16,7 +16,6 @@ free_game_list = []
 
 
 def send_message(chat_id, text, token=token):
-
     bot = telegram.Bot(token=token)
     bot.sendMessage(chat_id=user_id, text=text)
 
