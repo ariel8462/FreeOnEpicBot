@@ -116,7 +116,3 @@ dmypy.json
 
 # profiling data
 .prof
-
-#private data
-Token.txt
-UserID.txt
