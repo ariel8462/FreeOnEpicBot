@@ -1,5 +1,5 @@
 # FreeOnEpicBot
-A bot that will notify you when there are new games on steam
+A telegram bot that will notify when games become free on all platforms
 
 ## Commands:
 - '/freegame' - show the current free game
