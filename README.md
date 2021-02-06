@@ -2,7 +2,7 @@
 A telegram bot that will notify when games become free on all platforms such as Steam, Epic Games etc
 
 ## Commands:
-- '/freegame' - show the current free game
+- `/freegame` - show the current free game
 
 No other commands, the bot notifies when new games become free automatically
 
