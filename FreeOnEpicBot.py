@@ -4,9 +4,9 @@ from telegram.ext import Updater, CommandHandler
 import logging
 import threading
 
-
-token = "1447754233:AAHxpRbmZH2IbrVFAo8sShCGnQX3vpsw9fo"
-user_id = 1170714920
+#bot token for your bot and user id for the account that will get the messages from the bot and the only one that has access to it
+token = "BOT_TOKEN_HERE"
+user_id = 'USER_ID_HERE'
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
