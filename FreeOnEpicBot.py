@@ -67,7 +67,6 @@ If you want to see the current free game please use the following command: /free
 
 
 def main():
-    updater = Updater(token=token)
     updater = Updater(token=token, use_context=True)
     dp = updater.dispatcher
     logger.info('The bot has started')
