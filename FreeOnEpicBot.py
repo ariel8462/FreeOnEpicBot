@@ -4,8 +4,11 @@ from telegram.ext import Updater, CommandHandler
 import logging
 import threading
 
-token = "1447754233:AAHxpRbmZH2IbrVFAo8sShCGnQX3vpsw9fo"
-user_id = 1170714920
+"""
+A bot token for the bot, and your user id (you will be the only one with access to the bot)
+"""
+token = "BOT_TOKEN_HERE"
+user_id = 'USER_ID_HERE'
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -48,11 +51,27 @@ def free_game(update, context):
     bot.send_message(chat_id=user_id, text=free_right_now)
 
 
+def help_command(update, context):
+    bot = context.bot
+    user = update.effective_user
+    if not update.message.chat.type == "private":
+        return
+    if update.effective_user.id != user_id:
+        return
+    bot.send_message(chat_id=user_id, text=
+    """Hi there, I am a bot that shows you the current free games on all the major game platforms out there
+You will get automatically notified when new games become available for free
+If you want to see the current free game please use the following command: /freegame
+""")
+
+
 def main():
+    updater = Updater(token=token)
     updater = Updater(token=token, use_context=True)
     dp = updater.dispatcher
     logger.info('The bot has started')
     dp.add_handler(CommandHandler('freegame', free_game))
+    dp.add_handler(CommandHandler("help", help_command))
     updater.start_polling()
     updater.idle()
 
