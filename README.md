@@ -18,4 +18,4 @@ No other commands, the bot notifies when new games become free automatically
 
 ## Marks:
 - The code can be better, just got busy and no time for refactoring/improvements, will be happy for feedback!
-- TODO - add heroku var support (lol)
+- TO DO - add heroku var support (lol)
