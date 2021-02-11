@@ -116,3 +116,7 @@ dmypy.json
 
 # profiling data
 .prof
+
+# user info
+BOT_TOKEN.txt
+USER_ID.txt
