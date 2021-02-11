@@ -8,11 +8,13 @@ import threading
 A bot token for the bot, and your user id (you will be the only one with access to the bot)
 """
 
-with open("BOT_TOKEN.txt") as f:
-    token = f.read().strip()
-with open("USER_ID.txt") as f:
-    user_id = f.read().strip()
-    user_id = int(user_id)
+token = "1562589616:AAE7NRwpF1BXRzo41W9poaVt-uPeth816x4"
+user_id = 1170714920
+#with open("BOT_TOKEN.txt") as f:
+    #token = f.read().strip()
+#with open("USER_ID.txt") as f:
+    #user_id = f.read().strip()
+    #user_id = int(user_id)
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
