@@ -5,7 +5,7 @@ import logging
 import threading
 
 """
-A bot token for the bot, and your user id (you will be the only one with access to the bot)
+A bot token for the bot, and a userID for the control over the bot
 """
 with open("BOT_TOKEN.txt") as f:
     token = f.read().strip()
@@ -15,6 +15,7 @@ with open("USER_ID.txt") as f:
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
+
 logger = logging.getLogger(__name__)
 
 free_game_list = []
@@ -26,6 +27,14 @@ def send_message(chat_id, text, token=token):
 
 
 def get_links(url="https://www.indiegamebundles.com/category/free/rss"):
+    """
+    Parses new games from the rss feed and formats them into a compact-looking message
+
+    Args:
+        url (str): rss feed of a specific site, in this case the feed of a "Game News" site
+    Returns:
+        a ready to go message that contains the current's free game link + description
+    """
     d = feedparser.parse(url)
     free_description = d.entries[0].title
     free_link = d.entries[0].link
@@ -45,8 +54,10 @@ free_right_now = get_links()
 
 
 def free_game(update, context):
+    """
+    Sends the current free game via telegram
+    """
     bot = context.bot
-    user = update.effective_user
     if not update.message.chat.type == "private":
         return
     if update.effective_user.id != user_id:
@@ -55,8 +66,10 @@ def free_game(update, context):
 
 
 def help_command(update, context):
+    """
+    Sends basic information about the bot and explains it's use in short via telegram
+    """
     bot = context.bot
-    user = update.effective_user
     if not update.message.chat.type == "private":
         return
     if update.effective_user.id != user_id:
