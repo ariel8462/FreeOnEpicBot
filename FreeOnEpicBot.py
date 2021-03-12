@@ -38,18 +38,21 @@ def get_links(context):
         a ready to go message that contains the current's free game link + description
     """
     url = "https://www.indiegamebundles.com/category/free/rss"
-    d = feedparser.parse(url)
-    free_description = d.entries[0].title
-    free_link = d.entries[0].link
-    if free_link not in free_game_list:
-        free_game_list.append(free_link)
-        if len(free_game_list) == 1:
-            pass
-        else:
-            send_message(text=f"""{free_description}
-{free_link}""")
-    return f""" {free_description}
-{free_link}"""
+    try:
+        d = feedparser.parse(url)
+        free_description = d.entries[0].title
+        free_link = d.entries[0].link
+        if free_link not in free_game_list:
+            free_game_list.append(free_link)
+            if len(free_game_list) == 1:
+                pass
+            else:
+                send_message(text=f"""{free_description}
+        {free_link}""")
+        return f""" {free_description}
+        {free_link}"""
+    except Exception as e:
+        send_message(text=f"The site is currently down or unreachable:\n{e}")
 
 
 free_right_now = get_links("")
