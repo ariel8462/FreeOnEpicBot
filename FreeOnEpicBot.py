@@ -8,14 +8,6 @@ You will get automatically notified when new games become free to collect.
 If you would like to see the current free game please use the following command:  /freegame
 """
 
-"""
-A bot token for the bot, and a userID for the control over the bot
-"""
-with open("BOT_TOKEN.txt") as f:
-    token = f.read().strip()
-with open("USER_ID.txt") as f:
-    user_id = f.read().strip()
-    user_id = int(user_id)
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -23,6 +15,15 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 free_game_list = []
+
+try:
+    with open("BOT_TOKEN.txt") as f:
+        token = f.read().strip()
+    with open("USER_ID.txt") as f:
+        user_id = f.read().strip()
+        user_id = int(user_id)
+except Exception as e:
+    print(e)
 
 
 def send_message(text):
