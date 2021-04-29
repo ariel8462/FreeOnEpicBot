@@ -118,5 +118,4 @@ dmypy.json
 .prof
 
 # user info
-BOT_TOKEN.txt
-USER_ID.txt
+config.py
