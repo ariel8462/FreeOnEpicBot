@@ -12,14 +12,11 @@ You will get automatically notified when new games become free to collect.
 If you would like to see the current free game please use the following command:  /freegame
 """
 
-
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
-
 free_game_list = []
-
 bot_token = config.BOT_TOKEN
 
 if os.path.exists('data.json'):
@@ -33,7 +30,6 @@ def send_message(text):
     bot = telegram.Bot(token=bot_token)
     for id in chat_db.values():
         bot.sendMessage(chat_id=id, text=text)
-
 
 
 def get_links(context):
