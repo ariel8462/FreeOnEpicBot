@@ -119,3 +119,4 @@ dmypy.json
 
 # user info
 config.py
+data.json
