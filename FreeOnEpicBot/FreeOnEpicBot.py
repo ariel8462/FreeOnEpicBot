@@ -7,11 +7,6 @@ import json
 import os
 
 
-help_message = """Hi there, I am a bot that shows the current free games on all the major game platforms out there.
-You will get automatically notified when new games become free to collect.
-If you would like to see the current free game please use the following command:  /freegame
-"""
-
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 
@@ -37,9 +32,9 @@ def send_message(text):
             for key, value in chat_db.items():
                 if value == id:
                     del chat_db[key]
-                    with open('data.json', 'w') as chat_data:
-                        json.dump(chat_db, chat_data)
-
+                    break
+            with open('data.json', 'w') as chat_data:
+                json.dump(chat_db, chat_data)
 
 
 def get_links(context):
@@ -81,7 +76,7 @@ def help_command(update, context):
     Sends basic information about the bot and explains it's use in short via telegram
     """
     bot = context.bot
-    bot.send_message(chat_id=update.effective_chat.id, text=help_message)
+    bot.send_message(chat_id=update.effective_chat.id, text=config.HELP_MESSAGE)
 
 
 def subscribe(update, context):
