@@ -29,7 +29,17 @@ else:
 def send_message(text):
     bot = telegram.Bot(token=bot_token)
     for id in chat_db.values():
-        bot.sendMessage(chat_id=id, text=text)
+        try:
+            bot.sendMessage(chat_id=id, text=text)
+        #In case the group/user is non-existent
+        except Exception as e:
+            logging.warning(f"The following chat ID doesn't exist - {e}")
+            for key, value in chat_db.items():
+                if value == id:
+                    del chat_db[key]
+                    with open('data.json', 'w') as chat_data:
+                        json.dump(chat_db, chat_data)
+
 
 
 def get_links(context):
@@ -104,6 +114,8 @@ def unsubscribe(update, context):
                 if value == chat_id:
                     del chat_db[key]
                     bot.send_message(chat_id=update.effective_chat.id, text="You have succefully unsubscribed!")
+                    with open('data.json', 'w') as chat_data:
+                        json.dump(chat_db, chat_data)
                     return
     else:
         bot.send_message(chat_id=update.effective_chat.id, text="You are not even subscribed!")
