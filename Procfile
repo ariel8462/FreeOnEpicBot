@@ -1,1 +1,1 @@
-worker python3 FreeOnEpicBot.py
+worker cd FreeOnEpicBot; python3 FreeOnEpicBot.py
