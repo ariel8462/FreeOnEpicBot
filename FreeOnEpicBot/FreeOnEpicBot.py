@@ -23,7 +23,7 @@ else:
 
 def remove_id(chat_id):
     """
-    Removes A certain chat ID from the json file of subscribed users/chats
+    Removes a certain chat ID from the json file of subscribed users/chats
     Args:
         chat_id: A chat ID to be removed from the subscription
     """
