@@ -21,6 +21,19 @@ else:
     chat_db = {}
 
 
+def remove_id(chat_id):
+    """
+    Removes A certain chat ID from the json file of subscribed users/chats
+    Args:
+        chat_id: A chat ID to be removed from the subscription
+    """
+    for key, value in chat_db.items():
+        if value == chat_id:
+            del chat_db[key]
+    with open('data.json', 'w') as chat_data:
+        json.dump(chat_db, chat_data)
+
+
 def send_message(text):
     bot = telegram.Bot(token=bot_token)
     for id in chat_db.values():
@@ -29,12 +42,7 @@ def send_message(text):
         #In case the group/user is non-existent
         except Exception as e:
             logging.warning(f"The following chat ID doesn't exist - {e}")
-            for key, value in chat_db.items():
-                if value == id:
-                    del chat_db[key]
-                    break
-            with open('data.json', 'w') as chat_data:
-                json.dump(chat_db, chat_data)
+            remove_id(id)
 
 
 def get_links(context):
@@ -105,13 +113,9 @@ def unsubscribe(update, context):
     chat_id = update.effective_chat.id
     for id in chat_db.values():
         if chat_id == id:
-            for key, value in chat_db.items():
-                if value == chat_id:
-                    del chat_db[key]
-                    bot.send_message(chat_id=update.effective_chat.id, text="You have succefully unsubscribed!")
-                    with open('data.json', 'w') as chat_data:
-                        json.dump(chat_db, chat_data)
-                    return
+            remove_id(chat_id)
+            bot.send_message(chat_id=update.effective_chat.id, text="You have succefully unsubscribed!")
+            return
     else:
         bot.send_message(chat_id=update.effective_chat.id, text="You are not even subscribed!")
         return
