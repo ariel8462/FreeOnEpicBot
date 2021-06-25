@@ -35,11 +35,15 @@ def remove_id(chat_id):
 
 
 def send_message(text):
+	"""
+	Sends a message to each ID in the dictionary, and removes the unreachable ones
+	Args:
+		The text to send - the game link
+	"""
     bot = telegram.Bot(token=bot_token)
     for id in chat_db.values():
         try:
             bot.sendMessage(chat_id=id, text=text)
-        #In case the group/user is non-existent
         except Exception as e:
             logging.warning(f"The following chat ID doesn't exist - {e}")
             remove_id(id)
@@ -59,13 +63,11 @@ def get_links(context):
         free_link = d.entries[0].link
         if free_link not in free_game_list:
             free_game_list.append(free_link)
-            if len(free_game_list) == 1:
-                pass
-            else:
+            if len(free_game_list) != 1:
                 send_message(text=f"{free_description}\n{free_link}")
         return f"{free_description}\n{free_link}"
     except Exception as e:
-        send_message(text=f"The site is currently down or unreachable:\n{e}")
+        send_message(text=f"The site is currently down or unreachable:\t{e}")
 
 
 free_right_now = get_links('')
