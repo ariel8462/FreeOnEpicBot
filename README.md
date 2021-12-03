@@ -3,7 +3,7 @@ A telegram bot that will notify when games become free on all platforms such as 
 
 ## Commands:
 - `/subscribe` - suscribe for notifications about new games
-- `/unsubscribe` - unsuscribe from notifications about new games
+- `/unsubscribe` - unsubscribe from notifications about new games
 - `/freegame` - show the current free game
 - `/help` - show basic bot info`
 
